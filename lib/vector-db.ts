@@ -110,18 +110,30 @@ export async function upsertDocumentChunks(chunks: DocumentChunk[]) {
   }
 }
 
-export async function deleteDocumentSections(documentId: string) {
+export async function deleteDocumentSections(sectionTitle: string) {
   try {
     // Get initialized index
     const pineconeIndex = await getIndex();
     
-    await pineconeIndex.deleteMany({
-      filter: { documentId }
-    })
-    console.log(`Successfully deleted vectors with documentId: ${documentId}`)
+    // First query to find vectors with matching source/documentId
+    const queryResults = await pineconeIndex.query({
+      vector: Array(1024).fill(0), // Placeholder vector for metadata-only query
+      topK: 10000, // Set a large number to fetch all matching vectors
+      includeMetadata: true,
+      filter: { sectionTitle: sectionTitle }
+    });
+
+    // Then delete the found vectors by their IDs
+    if (queryResults.matches && queryResults.matches.length > 0) {
+      const ids = queryResults.matches.map((match: { id: string }) => match.id);
+      await Promise.all(ids.map((id: string) => pineconeIndex.deleteOne(id)));
+      console.log(`Successfully deleted ${ids.length} vectors for sectionTitle: ${sectionTitle}`);
+    } else {
+      console.log(`No vectors found for sectionTitle: ${sectionTitle}`);
+    }
   } catch (error) {
-    console.error(`Error deleting vectors for document ${documentId}:`, error)
-    throw error
+    console.error(`Error deleting vectors for sectionTitle ${sectionTitle}:`, error);
+    throw error;
   }
 }
 

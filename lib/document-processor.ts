@@ -119,7 +119,7 @@ export async function updateDocumentSection(filename: string, sectionTitle: stri
   const sectionId = `${source}-${sectionTitle.toLowerCase().replace(/\s+/g, "-")}`
 
   // Delete old section
-  await deleteDocumentSections(source)
+  await deleteDocumentSections(sectionTitle)
 
   // Create new chunk for updated section
   const hindiPattern = /[\u0900-\u097F]/
@@ -137,7 +137,7 @@ export async function updateDocumentSection(filename: string, sectionTitle: stri
   await upsertDocumentChunks([chunk])
 
   // Update document metadata
-  await supabaseAdmin.from("documents").update({ updated_at: new Date().toISOString() }).eq("filename", filename)
+  await supabaseAdmin.from("Document").update({ updatedAt: new Date().toISOString() }).eq("sections.title", sectionTitle)
 
   return { success: true, sectionId }
 }
