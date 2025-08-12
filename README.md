@@ -19,7 +19,7 @@ A comprehensive Next.js application for an intelligent knowledge base chatbot wi
 - **Authentication**: NextAuth.js with Supabase
 - **Database**: Supabase (PostgreSQL)
 - **Vector DB**: Pinecone
-- **AI**: OpenAI GPT-4 with AI SDK
+- **OpenRouter**: OpenAI GPT-4 with OpenRouter SDK
 - **UI**: Tailwind CSS + shadcn/ui
 - **Language**: TypeScript
 
@@ -43,9 +43,9 @@ A comprehensive Next.js application for an intelligent knowledge base chatbot wi
 2. **Install dependencies**
    \`\`\`bash
    npm install
-   # or
+   or
    yarn install
-   # or
+   or
    pnpm install
    \`\`\`
 
@@ -56,26 +56,34 @@ A comprehensive Next.js application for an intelligent knowledge base chatbot wi
    
    Fill in your environment variables:
    - `NEXTAUTH_SECRET`: Generate with `openssl rand -base64 32`
-   - `SUPABASE_URL` and `SUPABASE_ANON_KEY`: From your Supabase project
+   - `NEXT_PUBLIC_SUPABASE_URL`: From your Supabase project
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: From your Supabase project
    - `OPENAI_API_KEY`: From OpenAI dashboard
    - `PINECONE_API_KEY`: From Pinecone console
+   - `NEXTAUTH_URL`=http://localhost:3000
+   - `SUPABASE_SERVICE_ROLE_KEY`= SERVICE ROLE KEY FROM THE SUPABASE
+   - `DATABASE_URL`=SUPABASE DATABASE URL in PRISMA ORM
+   - `DIRECT_URL`=SUPABASE DIRECT URL in PRISMA ORM
+   - `PINECONE_API_KEY`=PINECONE API KEY FOR VECTOR DB
+   - `MISTRAL_API_KEY`=MISTRAL API KEY FOR THE EMBEDDINGS
+   - `OPENROUTER_API_KEY`=OPENROUTER API KEY FOR OPENAI
 
 4. **Set up Supabase database**
    
    Run the SQL schema in your Supabase SQL editor:
    \`\`\`bash
-   # Copy the contents of scripts/supabase-schema.sql
-   # and run it in your Supabase project
+   npx prisma generate
+   npx prisma migrate dev --name
    \`\`\`
 
-5. **Create Pinecone index**
+6. **Create Pinecone index**
    
    Create a new index in Pinecone with:
    - Name: `claro-kb`
-   - Dimensions: `1536` (for OpenAI embeddings)
+   - Dimensions: `1024` (for OpenAI embeddings)
    - Metric: `cosine`
 
-6. **Run the development server**
+7. **Run the development server**
    \`\`\`bash
    npm run dev
    # or
@@ -84,7 +92,7 @@ A comprehensive Next.js application for an intelligent knowledge base chatbot wi
    pnpm dev
    \`\`\`
 
-7. **Open your browser**
+8. **Open your browser**
    
    Navigate to [http://localhost:3000](http://localhost:3000)
 
@@ -106,7 +114,7 @@ A comprehensive Next.js application for an intelligent knowledge base chatbot wi
 
 ## Project Structure
 
-\`\`\`
+\`\`\`bash
 claro-energy-chatbot/
 ├── app/                    # Next.js App Router pages
 │   ├── api/               # API routes
