@@ -35,10 +35,10 @@ A comprehensive Next.js application for an intelligent knowledge base chatbot wi
 ### Installation
 
 1. **Clone the repository**
-   \`\`\`bash
+   \\\bash
    git clone <repository-url>
    cd claro-energy-chatbot
-   \`\`\`
+   \\\
 
 2. **Install dependencies**
    \`\`\`bash
