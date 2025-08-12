@@ -62,7 +62,6 @@ A comprehensive Next.js application for an intelligent knowledge base chatbot wi
    - `NEXTAUTH_SECRET`: Generate with `openssl rand -base64 32`
    - `NEXT_PUBLIC_SUPABASE_URL`: From your Supabase project
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: From your Supabase project
-   - `OPENAI_API_KEY`: From OpenAI dashboard
    - `PINECONE_API_KEY`: From Pinecone console
    - `NEXTAUTH_URL`=http://localhost:3000
    - `SUPABASE_SERVICE_ROLE_KEY`= SERVICE ROLE KEY FROM THE SUPABASE
