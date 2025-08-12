@@ -35,24 +35,28 @@ A comprehensive Next.js application for an intelligent knowledge base chatbot wi
 ### Installation
 
 1. **Clone the repository**
-   \\\bash
+   ```
    git clone <repository-url>
    cd claro-energy-chatbot
-   \\\
+   ```
 
 2. **Install dependencies**
-   \`\`\`bash
+   ```
    npm install
+   ```
    or
+   ```
    yarn install
+   ```
    or
+   ```
    pnpm install
-   \`\`\`
+   ```
 
-3. **Set up environment variables**
-   \`\`\`bash
+4. **Set up environment variables**
+   ```
    cp .env.example .env.local
-   \`\`\`
+   ```
    
    Fill in your environment variables:
    - `NEXTAUTH_SECRET`: Generate with `openssl rand -base64 32`
@@ -68,13 +72,13 @@ A comprehensive Next.js application for an intelligent knowledge base chatbot wi
    - `MISTRAL_API_KEY`=MISTRAL API KEY FOR THE EMBEDDINGS
    - `OPENROUTER_API_KEY`=OPENROUTER API KEY FOR OPENAI
 
-4. **Set up Supabase database**
+5. **Set up Supabase database**
    
    Run the SQL schema in your Supabase SQL editor:
-   \`\`\`bash
+   ```
    npx prisma generate
    npx prisma migrate dev --name
-   \`\`\`
+   ```
 
 6. **Create Pinecone index**
    
@@ -84,15 +88,19 @@ A comprehensive Next.js application for an intelligent knowledge base chatbot wi
    - Metric: `cosine`
 
 7. **Run the development server**
-   \`\`\`bash
+   ```
    npm run dev
-   # or
+   ```
+   or
+   ```
    yarn dev
-   # or
+   ```
+   or
+   ```
    pnpm dev
-   \`\`\`
+   ```
 
-8. **Open your browser**
+9. **Open your browser**
    
    Navigate to [http://localhost:3000](http://localhost:3000)
 
@@ -114,7 +122,7 @@ A comprehensive Next.js application for an intelligent knowledge base chatbot wi
 
 ## Project Structure
 
-\`\`\`bash
+```
 claro-energy-chatbot/
 ├── app/                    # Next.js App Router pages
 │   ├── api/               # API routes
@@ -134,7 +142,7 @@ claro-energy-chatbot/
 │   └── chat-service.ts    # Chat utilities
 ├── scripts/               # Database and setup scripts
 └── types/                 # TypeScript type definitions
-\`\`\`
+```
 
 ## Key Features Explained
 
